@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Scandinavian minimal palette - light theme */
+    --background: 250 10% 97%; /* Very light cool gray */
+    --foreground: 210 10% 15%; /* Dark cool gray */
+    --card: 0 0% 100%; /* Pure white */
+    --card-foreground: 210 10% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 10% 15%;
+    --muted: 210 8% 40%; /* Medium gray */
+    --muted-foreground: 210 8% 60%;
+    --accent: 200 70% 60%; /* Soft pastel blue */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 8% 90%; /* Light border */
+    --input: 0 0% 100%;
+    --input-foreground: 210 10% 15%;
+    --ring: 200 70% 60%;
+    --radius: 0.5rem;
+    
+    /* Accent colors for visual interest */
+    --accent-pink: 340 80% 70%; /* Soft rose blush */
+    --accent-blue: 200 70% 60%; /* Soft pastel blue */
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Typography - Scandinavian minimal style */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    font-weight: 700;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  p, span, a {
+    @apply font-normal;
+    font-weight: 400;
+  }
+
+  /* Subtle text for hierarchy */
+  .text-subtle {
+    color: hsl(var(--muted));
+    font-weight: 300;
+  }
+
+  /* Geometric accents */
+  .geometric-accent {
+    @apply absolute pointer-events-none;
+  }
+
+  .accent-circle {
+    @apply rounded-full opacity-10;
+  }
+
+  .accent-square {
+    @apply opacity-10;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50;
+    border-color: hsl(var(--ring));
+  }
+
+  .btn-primary {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  .btn-secondary {
+    background-color: hsl(var(--card));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .btn-secondary:hover {
+    background-color: hsl(var(--muted) / 0.5);
+  }
+
+  /* Dashboard card styling */
+  .dashboard-card {
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    @apply rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  /* Table styling for TanStack Table */
+  .table-container {
+    @apply w-full overflow-auto;
+  }
+
+  .table-header {
+    background-color: hsl(var(--muted) / 0.3);
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .table-row {
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .table-row:hover {
+    background-color: hsl(var(--muted) / 0.3);
+  }
+
+  .table-cell {
+    @apply px-4 py-3 text-sm;
+  }
+
+  /* Status badges */
+  .badge-active {
+    @apply inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800;
+  }
+
+  .badge-inactive {
+    @apply inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800;
+  }
+
+  .badge-resigned {
+    @apply inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-800;
+  }
+
+  .badge-pending {
+    @apply inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800;
+  }
+
+  .badge-paid {
+    @apply inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800;
+  }
+
+  .badge-cancelled {
+    @apply inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-800;
+  }
+
+  /* Sidebar styling */
+  .sidebar-nav {
+    @apply space-y-2;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 rounded-md px-4 py-2 text-sm font-medium transition-colors;
+  }
+
+  .sidebar-item:hover {
+    background-color: hsl(var(--muted) / 0.5);
+  }
+
+  .sidebar-item-active {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  /* Input styling */
+  .input-field {
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--input));
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: hsl(var(--input-foreground));
+  }
+
+  .input-field::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .input-field:focus {
+    outline: none;
+    ring: 2px;
+    border-color: hsl(var(--ring));
+  }
+
+  /* Divider with geometric accent */
+  .divider-accent {
+    @apply relative my-8 flex items-center;
+  }
+
+  .divider-accent::before {
+    @apply flex-1 border-t;
+    border-color: hsl(var(--border));
+    content: '';
+  }
+
+  .divider-accent::after {
+    @apply flex-1 border-t;
+    border-color: hsl(var(--border));
+    content: '';
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .space-y-tight {
+    @apply space-y-1;
+  }
+
+  .space-y-loose {
+    @apply space-y-6;
+  }
+
+  /* Scandinavian spacing */
+  .p-scandinavian {
+    @apply p-6;
+  }
+
+  .gap-scandinavian {
+    @apply gap-4;
+  }
+
+  /* Subtle shadow for depth */
+  .shadow-subtle {
+    @apply shadow-sm;
+  }
+
+  /* Geometric background patterns */
+  .bg-geometric-accent {
+    @apply relative overflow-hidden;
+  }
+
+  .bg-geometric-accent::before {
+    @apply absolute -top-20 -right-20 h-40 w-40 rounded-full opacity-5;
+    background-color: hsl(var(--accent-blue));
+    content: '';
+  }
+
+  .bg-geometric-accent::after {
+    @apply absolute -bottom-20 -left-20 h-40 w-40 rounded-full opacity-5;
+    background-color: hsl(var(--accent-pink));
+    content: '';
+  }
+}
